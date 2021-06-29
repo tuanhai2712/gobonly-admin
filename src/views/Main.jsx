@@ -30,7 +30,7 @@ export default function Main({ renderRouteUser, accessToken }) {
         >
           <img
             src={
-              'https://onthiielts.com.vn/wp-content/uploads/2019/04/tiw-logo.png?fbclid=IwAR3sUph0GsMb4ylqlGYEhzQtlwgHB9V8yeS4vQfZxXuVjW2_7MaWxzgSq3k'
+              'https://gobonly.com/wp-content/uploads/2021/06/Go-bonly-logo-218x73.png'
             }
             style={{ width: '30%' }}
             alt="logo"

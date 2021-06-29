@@ -15,11 +15,12 @@ function* checkAuthenticated() {
 
 function* watchSignIn({ payload }) {
   const res = yield call(client.authPost, Endpoint.LOGIN, payload);
+  console.log('res', res)
   if (res.data.access_token) {
-    localStorage.setItem(TOKEN, res.data.access_token)
-    localStorage.setItem(STORAGE_PROFILE, JSON.stringify(res.data.user))
-    history.push('/home')
-    window.location.reload();
+    // localStorage.setItem(TOKEN, res.data.access_token)
+    // localStorage.setItem(STORAGE_PROFILE, JSON.stringify(res.data.user))
+    // history.push('/home')
+    // window.location.reload();
   }
   return yield put(signInFinish(res.data))
 }
