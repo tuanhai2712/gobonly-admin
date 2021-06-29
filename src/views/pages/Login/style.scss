@@ -1,0 +1,46 @@
+$color_blue: #010440;
+$size: 0.875rem;
+$color_body: #717177;
+
+#login {
+  height: 100vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color: #010440;
+  .forgot-password-text {
+    margin: 20px 0px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .form_login {
+    border-radius: 5px;
+    background: #fff;
+    padding: 1.5rem 2rem;
+    margin-bottom: 2rem;
+
+    .title_login {
+      text-transform: uppercase;
+      color: $color_blue;
+      font-weight: bold;
+      font-size: $size;
+    }
+
+    .forgot_password {
+      a {
+        text-decoration: underline;
+        color: $color_body;
+      }
+    }
+
+    .input-pass {
+      span {
+        padding-left: 0px;
+        input {
+          padding-left: 11px;
+        }
+      }
+    }
+  }
+}
+

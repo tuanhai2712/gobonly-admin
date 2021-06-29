@@ -1,0 +1,45 @@
+$color_blue: #010440;
+$color_white: #fff;
+
+.box-shadow {
+  box-shadow: 6px 4px 9px rgba(0, 0, 0, 0.08);
+}
+.ant-menu-submenu-popup {
+  width: fit-content;
+  a {
+    line-height: 30px;
+    display: block;
+    color: rgba(0, 0, 0, 0.85);
+    :hover {
+      color: $color_blue;
+    }
+    span {
+      margin-right: 6px;
+    }
+  }
+}
+.ant-menu-vertical.ant-menu-sub:not([class*='-active']) {
+  padding: 6px;
+
+}
+.header {
+  padding: 1rem;
+  background: $color_white;
+  height: 60px;
+  .title_header {
+    color: $color_blue;
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .sub_title_header {
+    font-size: 12px;
+  }
+}
+
+.menu_user {
+  a,
+  span {
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
