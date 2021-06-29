@@ -2,7 +2,10 @@ import { BASE_API_URL } from './constants';
 
 
 export const Endpoint = {
-  LOGIN: BASE_API_URL + '/admin/login',
+  LOGIN: BASE_API_URL + '/auth/login',
+
+
+
   BANNER: BASE_API_URL + '/admin/banner',
   USER: BASE_API_URL + '/admin/user',
   COUPON: BASE_API_URL + '/admin/coupon',

@@ -31,7 +31,7 @@ export default function Login() {
                 <Col span={24} className="text_center">
                   <img
                     src={
-                      'https://onthiielts.com.vn/wp-content/uploads/2019/04/tiw-logo.png?fbclid=IwAR3sUph0GsMb4ylqlGYEhzQtlwgHB9V8yeS4vQfZxXuVjW2_7MaWxzgSq3k'
+                      'https://gobonly.com/wp-content/uploads/2021/06/Go-bonly-logo-218x73.png'
                     }
                     alt="logo"
                     width={100}
