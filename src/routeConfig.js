@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeOutlined, UserOutlined, SettingOutlined, SoundOutlined, GiftOutlined, FileDoneOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, SettingOutlined, SoundOutlined, GiftOutlined, FileDoneOutlined, MenuOutlined } from '@ant-design/icons';
 import Homepage from './views/pages/HomePage/HomePage';
 import UserList from './views/pages/AccountManagement/Users/List'
 import TeacherList from './views/pages/AccountManagement/Teacher/List'
@@ -8,17 +8,13 @@ import VoucherList from './views/pages/VoucherManagement/List'
 import RequestList from './views/pages/VoucherManagement/RequestList'
 import NotificationList from './views/pages/NotificationManagement/List'
 import ReviewList from './views/pages/ReviewManagement/List'
+import Categories from './views/pages/CategoriesManagement/List'
 
 const userManagement = [
   {
     title: 'Quản lý người dùng',
     path: '/users',
     component: UserList,
-  },
-  {
-    title: 'Quản lý giáo viên',
-    path: '/teachers',
-    component: TeacherList,
   },
 ];
 const systemManagement = [
@@ -54,6 +50,11 @@ export const routeConfig = [
     component: NotificationList,
   },
   {
+    title: 'Quản lý danh mục',
+    path: '/categories',
+    component: Categories,
+  },
+  {
     title: 'Quản lý thông báo',
     path: '/reviews',
     component: ReviewList,
@@ -71,6 +72,12 @@ export const parentMenu = [
     single: true,
   },
   {
+    icon: <MenuOutlined />,
+    title: 'Quản lý danh mục',
+    path: '/categories',
+    single: true,
+  },
+  {
     icon: <SoundOutlined />,
     title: 'Quản lý thông báo',
     path: '/notification',
@@ -85,14 +92,15 @@ export const parentMenu = [
   {
     icon: <UserOutlined />,
     title: 'Quản lý tài khoản',
-    subItems: userManagement,
-    single: false,
+    path: '/users',
+    single: true,
   },
   {
     icon: <GiftOutlined />,
     title: 'Quản lý voucher',
     subItems: voucherManagement,
   },
+
   {
     icon: <SettingOutlined />,
     title: 'Quản lý hệ thống',

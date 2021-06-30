@@ -34,7 +34,7 @@ export default function Header() {
     <>
       <div className="menu_user text_right" style={{ color: '#fff' }}>
         <span onClick={showProfile} className="mr-1">
-          {user.name}
+          {user.email}
         </span>
         <Tooltip placement="bottom" title="Đăng xuất">
           <span onClick={handleLogout}>
