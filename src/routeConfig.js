@@ -8,7 +8,10 @@ import VoucherList from './views/pages/VoucherManagement/List'
 import RequestList from './views/pages/VoucherManagement/RequestList'
 import NotificationList from './views/pages/NotificationManagement/List'
 import ReviewList from './views/pages/ReviewManagement/List'
+
 import Categories from './views/pages/CategoriesManagement/List'
+import StoreData from './views/pages/StoreManagement/List'
+import StoreCreate from './views/pages/StoreManagement/Create'
 
 const userManagement = [
   {
@@ -19,9 +22,15 @@ const userManagement = [
 ];
 const systemManagement = [
   {
-    title: 'Quản lý banner',
-    path: '/banners',
-    component: BannerList,
+    title: 'Quản lý kho dữ liệu',
+    path: '/store',
+    component: StoreData,
+  },
+  {
+    title: 'Quản lý kho dữ liệu',
+    path: '/store/create',
+    hide: true,
+    component: StoreCreate,
   },
 ];
 const voucherManagement = [
@@ -78,33 +87,34 @@ export const parentMenu = [
     single: true,
   },
   {
-    icon: <SoundOutlined />,
-    title: 'Quản lý thông báo',
-    path: '/notification',
-    single: true,
-  },
-  {
-    icon: <FileDoneOutlined />,
-    title: 'Quản lý đánh giá',
-    path: '/reviews',
-    single: true,
-  },
-  {
-    icon: <UserOutlined />,
-    title: 'Quản lý tài khoản',
-    path: '/users',
-    single: true,
-  },
-  {
-    icon: <GiftOutlined />,
-    title: 'Quản lý voucher',
-    subItems: voucherManagement,
-  },
-
-  {
     icon: <SettingOutlined />,
     title: 'Quản lý hệ thống',
     subItems: systemManagement,
     single: false,
   },
+  // {
+  //   icon: <SoundOutlined />,
+  //   title: 'Quản lý thông báo',
+  //   path: '/notification',
+  //   single: true,
+  // },
+  // {
+  //   icon: <FileDoneOutlined />,
+  //   title: 'Quản lý đánh giá',
+  //   path: '/reviews',
+  //   single: true,
+  // },
+  // {
+  //   icon: <UserOutlined />,
+  //   title: 'Quản lý tài khoản',
+  //   path: '/users',
+  //   single: true,
+  // },
+  // {
+  //   icon: <GiftOutlined />,
+  //   title: 'Quản lý voucher',
+  //   subItems: voucherManagement,
+  // },
+
+
 ];
