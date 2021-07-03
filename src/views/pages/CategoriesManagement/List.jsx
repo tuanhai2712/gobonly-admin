@@ -1,29 +1,16 @@
-import React, {
-  Fragment,
-  useEffect,
-  useState,
-  useCallback,
-} from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import {
   Button,
   Row,
   Spin,
   Col,
-  Switch,
-  Pagination,
-  Modal,
-  Radio,
   Tree,
   Input
 } from 'antd';
 import {
   PlusOutlined,
-  DeleteOutlined
 } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { getBanner, bannerSelector, updateBanner, deleteBanner } from 'state/banner/reducer';
-import { BASE_LOCAL_URL } from 'utils/constants';
-import NoResultFound from 'views/components/NoResult/no-result'
 import styled from 'styled-components'
 const { TreeNode } = Tree;
 
