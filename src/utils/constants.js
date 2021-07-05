@@ -1,4 +1,4 @@
-export const BASE_API_URL = 'http://localhost:8000/api';
+export const BASE_API_URL = 'http://127.0.0.1:8000/api';
 // export const BASE_API_URL = process.env.REACT_APP_API_URL;
 export const BASE_LOCAL_URL = process.env.REACT_APP_LOCAL;
 export const TOKEN = 'accessToken'

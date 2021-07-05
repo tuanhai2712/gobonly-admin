@@ -9,10 +9,12 @@ import {
 } from 'antd';
 import {
   PlusOutlined,
+  FormOutlined
 } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
-import styled from 'styled-components'
-const { TreeNode } = Tree;
+import { createCategories, categoriesSelector } from 'state/categories/reducer';
+import styled from 'styled-components';
+import ModalAddItems from './ModalAddItems'
 
 const treeData = [{
   title: 'Danh mục',
@@ -28,15 +30,15 @@ export default function List() {
     window.scrollTo(0, 0);
   }, []);
   const [tree, setTree] = useState(treeData)
+  const [visible, setVisible] = useState(false)
+  const [categorySelected, setCategorySelected] = useState(null)
   const [expandedKeys, setExpandedKeys] = useState([])
+  const { loading, data } = useSelector(categoriesSelector)
   const dispatch = useDispatch()
 
+  useEffect(() => {
 
-  const handleChangeNode = (event, node) => {
-    const { value } = event.target
-    console.log('node', node)
-    console.log('value', value)
-  }
+  }, [])
   const addParentNode = (node) => {
     const currentTree = tree;
     const findNode = currentTree.find((i) => i.key === node.key)
@@ -47,6 +49,7 @@ export default function List() {
           title: '',
           key: `${node.key}-${findNode.children.length}`,
           children: [],
+          items: [],
         }
       ]
     }
@@ -81,6 +84,7 @@ export default function List() {
           title: '',
           key: `${node.key}-${find.children.length}`,
           children: [],
+          items: [],
         }
       ]
     }
@@ -91,47 +95,106 @@ export default function List() {
 
   }
 
+  const buildFormData = (formData, data, parentKey) => {
+    if (data && typeof data === 'object' && !(data instanceof Date) && !(data instanceof File)) {
+      Object.keys(data).forEach(key => {
+        buildFormData(formData, data[key], parentKey ? `${parentKey}[${key}]` : key);
+      });
+    } else {
+      const value = data == null ? '' : data;
+      formData.append(parentKey, value);
+    }
+  }
+
+  const saveCategories = () => {
+    console.log('tree[0].children', tree[0].children)
+    if (tree[0].children) {
+      const formData = new FormData();
+      buildFormData(formData, tree[0].children);
+      dispatch(createCategories(formData))
+    }
+  }
+
   const onExpand = (expandedKeys) => {
     setExpandedKeys(expandedKeys)
   }
+
+  const handleOpenModal = (node) => {
+    setVisible(!visible)
+    setCategorySelected(node)
+  }
+
+  const saveItemsToCategory = (items) => {
+    const currentTree = tree;
+    const find = findNode(categorySelected.key, currentTree)
+    if (find) {
+      find.items = [...items]
+    }
+    setTree((state) => ([
+      ...currentTree
+    ]))
+    setVisible(!visible)
+    setCategorySelected(null)
+  }
+
+  const handleChangeNode = (event, node) => {
+    const { value } = event.target
+    const currentTree = tree;
+    const find = findNode(node.key, currentTree)
+    if (find) {
+      find.title = value
+    }
+    setTree((state) => ([
+      ...currentTree
+    ]))
+  }
   return (
     <Fragment>
-      <div className="container user_list">
-        {/* {!loading && !data.length && <NoResultFound />} */}
-        <Spin spinning={false}>
-          <Row type="flex">
-            <Col span={6}>
-              <TreeStyled
-                showLine
-                allowDrop={true}
-                autoExpandParent={false}
-                selectable={false}
-                expandedKeys={[...expandedKeys]}
-                defaultExpandAll={true}
-                treeData={tree}
-                onExpand={onExpand}
-                // onDrop={onChange}
-                titleRender={(node) => {
-                  if (!node.default) {
-                    return (
-                      <NodeStyled>
-                        <Input style={{ height: 25 }} onChange={(event) => handleChangeNode(event, node)} />
-                        <PlusOutlined style={{ fontSize: 14, color: 'red' }} onClick={() => addChildrenNode(node)} />
-                      </NodeStyled>
-                    )
-                  }
+      <Row style={{ marginBottom: 20 }}>
+        <Button disabled={!tree[0].children.length} type="primary" onClick={() => saveCategories()} >
+          Lưu
+        </Button>
+      </Row>
+      <Spin spinning={false}>
+        <Row type="flex">
+          <Col span={6}>
+            <TreeStyled
+              showLine
+              allowDrop={true}
+              autoExpandParent={false}
+              selectable={false}
+              expandedKeys={[...expandedKeys]}
+              defaultExpandAll={true}
+              treeData={tree}
+              onExpand={onExpand}
+              titleRender={(node) => {
+                if (!node.default) {
                   return (
                     <NodeStyled>
-                      <span>{node.title}</span>
-                      <PlusOutlined style={{ fontSize: 14, color: 'red' }} onClick={() => addParentNode(node)} />
+                      <Input value={node.title} style={{ height: 25 }} onChange={(event) => handleChangeNode(event, node)} />
+                      {node.key.length < 7 ?
+                        <>
+                          <PlusOutlined style={{ fontSize: 14, color: 'red' }} onClick={() => addChildrenNode(node)} />
+                          {node.title && <FormOutlined style={{ fontSize: 14, color: '#010440' }} onClick={() => handleOpenModal(node)} />}
+                        </>
+                        : null
+                      }
+
                     </NodeStyled>
                   )
-                }}
-              />
-            </Col>
-          </Row>
-        </Spin>
-      </div>
+                }
+                return (
+                  <NodeStyled>
+                    <span>{node.title}</span>
+                    <PlusOutlined style={{ fontSize: 14, color: 'red' }} onClick={() => addParentNode(node)} />
+                  </NodeStyled>
+                )
+              }}
+            />
+          </Col>
+        </Row>
+      </Spin>
+      {visible && <ModalAddItems visible={visible} action={() => handleOpenModal()} categorySelected={categorySelected} save={(items) => saveItemsToCategory(items)} />}
     </Fragment>
   );
 }

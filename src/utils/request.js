@@ -24,7 +24,7 @@ export const clearToken = async () => {
 const requestAbordCode = 'ECONNABORTED';
 
 axios.defaults.baseURL = '';
-axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Content-Type'] = '*';
 
 axios.defaults.timeout = 5000;
 

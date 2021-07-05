@@ -1,9 +1,8 @@
 import { BASE_API_URL } from './constants';
 
-
 export const Endpoint = {
   LOGIN: BASE_API_URL + '/auth/login',
-
+  CATEGORIES: BASE_API_URL + '/categories',
 
 
   BANNER: BASE_API_URL + '/admin/banner',
