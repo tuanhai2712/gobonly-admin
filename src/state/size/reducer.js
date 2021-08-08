@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-export const namespace = 'categories';
+export const namespace = 'size';
 
 // Reducer with inital state
 const INITAL_STATE = {
@@ -11,11 +11,11 @@ const slice = createSlice({
   name: namespace,
   initialState: INITAL_STATE,
   reducers: {
-    getCategories: (state) => ({
+    getSize: (state) => ({
       ...state,
       loading: true,
     }),
-    getCategoriesFinish: (state, action) => {
+    getSizeFinish: (state, action) => {
       const { data } = action.payload;
       return {
         ...state,
@@ -23,21 +23,11 @@ const slice = createSlice({
         data: data.data,
       };
     },
-    createCategories: (state) => ({
+    createSize: (state) => ({
       ...state,
       loading: true,
     }),
-    createCategoriesFinish: (state) => {
-      return {
-        ...state,
-        loading: false,
-      };
-    },
-    updateCategory: (state) => ({
-      ...state,
-      loading: true,
-    }),
-    updateCategoryFinish: (state) => {
+    createSizeFinish: (state) => {
       return {
         ...state,
         loading: false,
@@ -49,12 +39,10 @@ const slice = createSlice({
 export const reducer = slice.reducer;
 
 export const {
-  getCategories,
-  getCategoriesFinish,
-  createCategories,
-  createCategoriesFinish,
-  updateCategory,
-  updateCategoryFinish,
+  getSize,
+  getSizeFinish,
+  createSize,
+  createSizeFinish,
 } = slice.actions;
 
-export const categoriesSelector = (state) => state[namespace];
+export const sizeSelector = (state) => state[namespace];

@@ -71,7 +71,6 @@ export default function ModalCreateNotification({
       }
       dispatch(createNotification(payload))
     }
-
   };
   const selectCourse = (selected) => {
     setCourseSelected(selected)
@@ -84,7 +83,6 @@ export default function ModalCreateNotification({
   const changeTab = (key) => {
     setTabSelected(key)
   }
-  console.log(form.getFieldsError())
   return (
     <ModalStyled
       title="Tạo mới thông báo"

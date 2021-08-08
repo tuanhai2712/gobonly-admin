@@ -1,24 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Modal, Upload, message, Row, Col, Input } from 'antd';
+import { Button, Modal, Upload, message, Row, Col, Input, Select } from 'antd';
 import styled from 'styled-components';
 import { UploadOutlined } from '@ant-design/icons';
 import Fade from 'react-reveal/Fade';
+import { getSize } from 'state/size/reducer';
+import { useDispatch } from 'react-redux';
 export default function ModalAddItems({
   visible,
   action,
   save,
-  categorySelected
+  categorySelected,
 }) {
-  const [fileList, setFileList] = useState([])
+  const dispatch = useDispatch();
+  const [fileList, setFileList] = useState([]);
+  console.log('categorySelected', categorySelected);
   useEffect(() => {
-    if (categorySelected && categorySelected.items) {
-      setFileList(categorySelected.items)
-    } else {
-      setFileList([])
-    }
-  }, [])
-  console.log('fileList', fileList)
-  console.log('categorySelected', categorySelected)
+    dispatch(getSize());
+  }, [dispatch]);
   const beforeUpload = (file) => {
     const isJPG = file.type === 'image/jpeg';
     const isPNG = file.type === 'image/png';
@@ -30,7 +28,7 @@ export default function ModalAddItems({
       message.error('Image must smaller than 2MB!');
     }
     return isJPG && isPNG && isLt2M;
-  }
+  };
 
   const props = {
     name: 'file',
@@ -38,22 +36,23 @@ export default function ModalAddItems({
     showUploadList: false,
     beforeUpload,
     onChange(info) {
-      setFileList((state) => [...state, { file: info.file, color: '' }])
+      setFileList((state) => [...state, { file: info.file, color: '' }]);
     },
   };
   const getUrl = (file) => {
-    return URL.createObjectURL(file)
-  }
+    return URL.createObjectURL(file);
+  };
 
   const handleChangeColorCode = (event, idx) => {
     const { value } = event.target;
-    const currentState = fileList
-    currentState[idx].color = value
-    setFileList(() => [...currentState])
-  }
+    const currentState = fileList;
+    currentState[idx].color = value;
+    setFileList(() => [...currentState]);
+  };
+
   return (
     <ModalStyled
-      title="Cập nhật dữ liệu danh mục"
+      title="Tải lên dữ liệu ảnh mẫu"
       visible={visible}
       onCancel={action}
       centered={true}
@@ -64,7 +63,7 @@ export default function ModalAddItems({
     >
       <div style={{ padding: '0px 24px 24px' }}>
         <Row>
-          <Col span={12}>
+          <Col span={6}>
             <Upload {...props}>
               <Button icon={<UploadOutlined />}>Tải lên ảnh mẫu</Button>
             </Upload>
@@ -72,26 +71,33 @@ export default function ModalAddItems({
         </Row>
         <Row>
           {fileList.map((item, idx) => {
-            const url = getUrl(item.file)
+            const url = getUrl(item.file);
             return (
               <Col span={3} key={idx} style={{ padding: 5 }}>
-                <Fade
-                  duration={800}
-                  delay={1 * 10}
-                  style={{ height: '100%' }}
-                >
+                <Fade duration={800} delay={1 * 10} style={{ height: '100%' }}>
                   <img src={url} alt="avatar" style={{ width: '100%' }} />
                 </Fade>
-                <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <Input size="small" value={item.color} style={{ height: 20, width: '70%' }} onChange={(event) => handleChangeColorCode(event, idx)} />
-                  <div style={{ background: item.color, width: 20, height: 20, borderRadius: 10 }} />
-                </div>
+                <Input
+                  size="small"
+                  value={item.color}
+                  style={{ height: 20 }}
+                  onChange={(event) => handleChangeColorCode(event, idx)}
+                />
+                <div
+                  style={{
+                    background: item.color,
+                    width: '100%',
+                    height: 20,
+                    borderRadius: 10,
+                    marginTop: 5,
+                  }}
+                />
               </Col>
-            )
+            );
           })}
         </Row>
         <Row style={{ marginTop: 20 }}>
-          <Button type="primary" onClick={() => save(fileList)} >
+          <Button type="primary" onClick={() => save(fileList)}>
             Lưu
           </Button>
         </Row>
@@ -100,9 +106,12 @@ export default function ModalAddItems({
   );
 }
 
-
 const ModalStyled = styled(Modal)`
   .ant-modal-header .ant-modal-title {
     font-weight: 600;
   }
+`;
+
+const SelectStyled = styled(Select)`
+  width: 100%;
 `;

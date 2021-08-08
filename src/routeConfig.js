@@ -10,8 +10,9 @@ import NotificationList from './views/pages/NotificationManagement/List'
 import ReviewList from './views/pages/ReviewManagement/List'
 
 import Categories from './views/pages/CategoriesManagement/List'
-import StoreData from './views/pages/StoreManagement/List'
-import StoreCreate from './views/pages/StoreManagement/Create'
+import ProductData from './views/pages/ProductManagement/List'
+import ProductCreate from './views/pages/ProductManagement/Create'
+import SizeData from './views/pages/SizeManagement/List'
 
 const userManagement = [
   {
@@ -22,15 +23,19 @@ const userManagement = [
 ];
 const systemManagement = [
   {
-    title: 'Quản lý kho dữ liệu',
-    path: '/store',
-    component: StoreData,
+    title: 'Quản lý sản phẩm',
+    path: '/product',
+    component: ProductData,
   },
   {
-    title: 'Quản lý kho dữ liệu',
-    path: '/store/create',
+    path: '/product/create',
     hide: true,
-    component: StoreCreate,
+    component: ProductCreate,
+  },
+  {
+    title: 'Quản lý size',
+    path: '/size',
+    component: SizeData,
   },
 ];
 const voucherManagement = [

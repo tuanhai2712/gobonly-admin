@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { authSelector, signIn } from 'state/auth/reducer';
 import { Form, Input, Button, Row, Col, Spin } from 'antd';
 import './style.scss';
-const background_app = require('assets/images/background.jpg');
+const background_app = require('assets/images/background.png');
 export default function Login() {
   useEffect(() => {
     document.title = 'Đăng nhập';
