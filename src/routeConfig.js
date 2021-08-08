@@ -1,5 +1,5 @@
 import React from 'react';
-import { HomeOutlined, UserOutlined, SettingOutlined, SoundOutlined, GiftOutlined, FileDoneOutlined } from '@ant-design/icons';
+import { HomeOutlined, UserOutlined, SettingOutlined, SoundOutlined, GiftOutlined, FileDoneOutlined, MenuOutlined } from '@ant-design/icons';
 import Homepage from './views/pages/HomePage/HomePage';
 import UserList from './views/pages/AccountManagement/Users/List'
 import TeacherList from './views/pages/AccountManagement/Teacher/List'
@@ -9,23 +9,33 @@ import RequestList from './views/pages/VoucherManagement/RequestList'
 import NotificationList from './views/pages/NotificationManagement/List'
 import ReviewList from './views/pages/ReviewManagement/List'
 
+import Categories from './views/pages/CategoriesManagement/List'
+import ProductData from './views/pages/ProductManagement/List'
+import ProductCreate from './views/pages/ProductManagement/Create'
+import SizeData from './views/pages/SizeManagement/List'
+
 const userManagement = [
   {
     title: 'Quản lý người dùng',
     path: '/users',
     component: UserList,
   },
-  {
-    title: 'Quản lý giáo viên',
-    path: '/teachers',
-    component: TeacherList,
-  },
 ];
 const systemManagement = [
   {
-    title: 'Quản lý banner',
-    path: '/banners',
-    component: BannerList,
+    title: 'Quản lý sản phẩm',
+    path: '/product',
+    component: ProductData,
+  },
+  {
+    path: '/product/create',
+    hide: true,
+    component: ProductCreate,
+  },
+  {
+    title: 'Quản lý size',
+    path: '/size',
+    component: SizeData,
   },
 ];
 const voucherManagement = [
@@ -54,6 +64,11 @@ export const routeConfig = [
     component: NotificationList,
   },
   {
+    title: 'Quản lý danh mục',
+    path: '/categories',
+    component: Categories,
+  },
+  {
     title: 'Quản lý thông báo',
     path: '/reviews',
     component: ReviewList,
@@ -71,27 +86,10 @@ export const parentMenu = [
     single: true,
   },
   {
-    icon: <SoundOutlined />,
-    title: 'Quản lý thông báo',
-    path: '/notification',
+    icon: <MenuOutlined />,
+    title: 'Quản lý danh mục',
+    path: '/categories',
     single: true,
-  },
-  {
-    icon: <FileDoneOutlined />,
-    title: 'Quản lý đánh giá',
-    path: '/reviews',
-    single: true,
-  },
-  {
-    icon: <UserOutlined />,
-    title: 'Quản lý tài khoản',
-    subItems: userManagement,
-    single: false,
-  },
-  {
-    icon: <GiftOutlined />,
-    title: 'Quản lý voucher',
-    subItems: voucherManagement,
   },
   {
     icon: <SettingOutlined />,
@@ -99,4 +97,29 @@ export const parentMenu = [
     subItems: systemManagement,
     single: false,
   },
+  // {
+  //   icon: <SoundOutlined />,
+  //   title: 'Quản lý thông báo',
+  //   path: '/notification',
+  //   single: true,
+  // },
+  // {
+  //   icon: <FileDoneOutlined />,
+  //   title: 'Quản lý đánh giá',
+  //   path: '/reviews',
+  //   single: true,
+  // },
+  // {
+  //   icon: <UserOutlined />,
+  //   title: 'Quản lý tài khoản',
+  //   path: '/users',
+  //   single: true,
+  // },
+  // {
+  //   icon: <GiftOutlined />,
+  //   title: 'Quản lý voucher',
+  //   subItems: voucherManagement,
+  // },
+
+
 ];

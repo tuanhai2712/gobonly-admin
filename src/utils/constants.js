@@ -1,11 +1,12 @@
-export const BASE_API_URL = 'http://localhost:8000/api';
+export const BASE_API_URL = 'http://127.0.0.1:8000/api';
+export const BASE_URL = 'http://127.0.0.1:8000';
 // export const BASE_API_URL = process.env.REACT_APP_API_URL;
 export const BASE_LOCAL_URL = process.env.REACT_APP_LOCAL;
-export const TOKEN = 'accessToken'
-export const STORAGE_PROFILE = 'profile'
+export const TOKEN = 'accessToken';
+export const STORAGE_PROFILE = 'profile';
 export const TIME_CLOSE_MESSAGE = 5000;
 export const DEBOUNCE_INPUT_SEARCH_DELAY = 300;
-export const DATE_TIME_FORMAT = 'DD/MM/YYYY hh:mm'
+export const DATE_TIME_FORMAT = 'DD/MM/YYYY hh:mm';
 export const STATUS_MESSAGE = {
   SUCCESS: 'success',
   ERROR: 'error',
@@ -17,6 +18,7 @@ export const responseStatus = {
   FOUR00: 400,
   FOUR01: 401,
   FOUR03: 403,
+  FOUR22: 422,
   FIVE00: 500,
   FIVE01: 501,
   FIVE02: 502,
@@ -30,9 +32,9 @@ export const CANCEL = 'Hủy';
 export const CLOSE = 'Đóng';
 
 // Notification Constants
-export const TAB_NOTI_NORMAL = "normal";
-export const TAB_NOTI_CLASS_REVIEW = "review";
-export const TAB_NOTI_WITH_POST = "post";
+export const TAB_NOTI_NORMAL = 'normal';
+export const TAB_NOTI_CLASS_REVIEW = 'review';
+export const TAB_NOTI_WITH_POST = 'post';
 
 export const SEND_NOTIFICATION_TYPE_ALL = 0;
 export const SEND_NOTIFICATION_TO_CLASS = 1;

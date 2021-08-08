@@ -1,13 +1,13 @@
 import React from 'react';
 import NoResultSvg from './no-result.svg';
 import styled from 'styled-components';
-const NoResultFound = () => {
+const NoResultFound = ({ title, width = '100%' }) => {
   return (
     <Container>
       <H3Styled>
-        No result found
+        {title ? title : ' No result found'}
       </H3Styled>
-      <img src={NoResultSvg} alt="No Result" />
+      <img src={NoResultSvg} alt="No Result" style={{ width: width }} />
     </Container>
 
   );

@@ -32,7 +32,6 @@ export default function Main({ renderRouteUser, accessToken }) {
             src={
               'https://gobonly.com/wp-content/uploads/2021/06/Go-bonly-logo-218x73.png'
             }
-            style={{ width: '30%' }}
             alt="logo"
           />
         </div>
